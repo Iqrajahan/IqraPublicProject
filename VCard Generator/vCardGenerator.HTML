@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact Card Generator</title>
+
+        <!-- This project is meant to help you automatically generate vCard QR Codes -->
+        <!-- You can use this in your name card to make it more professional, -->
+        <!-- and make it easier for people to save your contact.-->
+
+        <script src="qrcode.min.js"></script>
+    </head>
+
+
+    <body>
+        <!--User input their details here-->
+        
+        <label for="fName">First name:</label>
+        <input type="text" id="fName" name="fName"><br><br>
+        <label for="telPhone">Phone number:</label>
+        <input type="text" id="telPhone" name="telPhone"><br><br>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><br><br>
+
+        <button id="submitBtn">Generate contact card </button>
+
+
+        <!-- GENERATE QR CODE HERE -->
+    <div id="qrD"></div>
+
+    <script>
+      document.getElementById("submitBtn").addEventListener("click", () => {
+      var fName = document.getElementById("fName").value;
+      var telPhone = document.getElementById("telPhone").value;
+      var email = document.getElementById("email").value;
+    
+      let card = "BEGIN:VCARD\r\n";
+      card += "VERSION:3.0\r\n";
+      card += "FN:"+fName+"\r\n"; //+
+      card += "TEL;TYPE=HOME:"+telPhone+"\r\n";
+      card += "EMAIL;TYPE=INTERNET:"+email+"\r\n"; 
+      card += "END:VCARD"
+      new QRCode(document.getElementById("qrD"), card);
+    });
+    </script>
+  </body>
+</html>
